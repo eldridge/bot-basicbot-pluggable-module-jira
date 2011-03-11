@@ -9,7 +9,7 @@ Bot::BasicBot::Pluggable::Module::JIRA - Access JIRA via IRC!
 
 =head1 VERSION
 
-This POD describes version 0.01
+This POD describes version 0.02
 
 =cut
 
@@ -187,7 +187,7 @@ which produces replies such as:
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Moose;
 use MooseX::Traits;
