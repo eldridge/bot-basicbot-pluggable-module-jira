@@ -591,12 +591,14 @@ sub get_issue
 		$issue->{status_name}	= $status;
 		$issue->{status_verb}	= $self->get_verb_for_status($status);
 
-		if (my $aref = $self->get_last_status_modification_info($key)) {
-			my $dt		= DateTime::Format::MySQL->parse_datetime($aref->[0]);
-			my $user	= $aref->[1];
+		if ($self->meta->has_method('get_last_status_modification_info')) {
+			if (my $aref = $self->get_last_status_modification_info($key)) {
+				my $dt		= DateTime::Format::MySQL->parse_datetime($aref->[0]);
+				my $user	= $aref->[1];
 
-			$issue->{status_last_changed_user} = $aref->[1];
-			$issue->{status_last_changed_datetime} = $dt;
+				$issue->{status_last_changed_user} = $aref->[1];
+				$issue->{status_last_changed_datetime} = $dt;
+			}
 		}
 
 		$issue->{version} = $issue->{fixVersions}->[0]
