@@ -187,8 +187,6 @@ which produces replies such as:
 
 =cut
 
-our $VERSION = '0.02';
-
 use Moose;
 use MooseX::Traits;
 
