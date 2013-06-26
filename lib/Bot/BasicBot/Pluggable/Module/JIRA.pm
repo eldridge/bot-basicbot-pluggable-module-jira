@@ -658,8 +658,10 @@ sub said
 
 	if (my @pairs = ($body =~ /$re/g)) {
 		#$callback->('match');
-
+		my %seen;
 		while (my ($inquiry, $issue) = splice @pairs, 0, 2) {
+			next if $seen{$issue}++; # ignore duplicates
+
 			my $handler = [ grep { $inquiry =~ $_->[0] } @{ $self->handlers } ]->[0]->[1];
 
 			$handler->($self, $issue, $callback) if $handler and $self->client;
